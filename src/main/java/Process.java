@@ -2,51 +2,99 @@
  * Represents a process in the system.
  */
 public class Process {
-  int pid;
-  int arrivalTime;
-  int burstTime;
-  int completionTime;
-  int turnaroundTime;
-  int waitingTime;
+  private int pid;
+  private int arrivalTime;
+  private int burstTime;
+  private int priority; // Needed for Preemptive Priority Scheduling
+  private int completionTime;
+  private int turnaroundTime;
+  private int waitingTime;
 
   /**
-   * Creates a new process.
+   * Constructor for First Come First Serve (FCFS)
    *
-   * @param pid The process ID
+   * @param pid        The process ID
    * @param arrivalTime The arrival time of the process
-   * @param burstTime The burst time of the process
+   * @param burstTime   The burst time of the process
    */
   public Process(int pid, int arrivalTime, int burstTime) {
     this.pid = pid;
     this.arrivalTime = arrivalTime;
     this.burstTime = burstTime;
+    this.priority = -1; // Default value (not used in FCFS)
   }
 
   /**
-   * Returns the process ID.
+   * Constructor for Preemptive Priority Scheduling
    *
-   * @return The process ID
+   * @param pid        The process ID
+   * @param arrivalTime The arrival time of the process
+   * @param burstTime   The burst time of the process
+   * @param priority    The priority of the process
    */
+  public Process(int pid, int arrivalTime, int burstTime, int priority) {
+    this.pid = pid;
+    this.arrivalTime = arrivalTime;
+    this.burstTime = burstTime;
+    this.priority = priority;
+  }
+
+  // Getters
   public int getPid() {
     return pid;
   }
 
-  /**
-   * Returns the arrival time of the process.
-   *
-   * @return The arrival time of the process
-   */
   public int getArrivalTime() {
     return arrivalTime;
   }
 
-  /**
-   * Returns the burst time of the process.
-   *
-   * @return The burst time of the process
-   */
   public int getBurstTime() {
     return burstTime;
   }
 
+  public int getPriority() {
+    return priority;
+  }
+
+  public int getCompletionTime() {
+    return completionTime;
+  }
+
+  public int getTurnaroundTime() {
+    return turnaroundTime;
+  }
+
+  public int getWaitingTime() {
+    return waitingTime;
+  }
+
+  // Setters
+  public void setCompletionTime(int completionTime) {
+    this.completionTime = completionTime;
+  }
+
+  public void setTurnaroundTime(int turnaroundTime) {
+    this.turnaroundTime = turnaroundTime;
+  }
+
+  public void setWaitingTime(int waitingTime) {
+    this.waitingTime = waitingTime;
+  }
+
+  @Override
+  public String toString() {
+    return "Process{" +
+      "pid=" + pid +
+      ", arrivalTime=" + arrivalTime +
+      ", burstTime=" + burstTime +
+      ", priority=" + priority +
+      ", completionTime=" + completionTime +
+      ", turnaroundTime=" + turnaroundTime +
+      ", waitingTime=" + waitingTime +
+      '}';
+  }
+
+  protected void setBurstTime(int burstTime) {
+    this.burstTime = burstTime;
+  }
 }
