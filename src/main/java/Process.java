@@ -56,25 +56,18 @@ public class Process {
     return priority;
   }
 
-  public int getCompletionTime() {
-    return completionTime;
-  }
 
   public void setCompletionTime(int completionTime) {
     this.completionTime = completionTime;
   }
 
-  public int getTurnaroundTime() {
-    return turnaroundTime;
-  }
+
 
   public void setTurnaroundTime(int turnaroundTime) {
     this.turnaroundTime = turnaroundTime;
   }
 
-  public int getWaitingTime() {
-    return waitingTime;
-  }
+
 
   public void setWaitingTime(int waitingTime) {
     this.waitingTime = waitingTime;

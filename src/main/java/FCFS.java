@@ -1,5 +1,9 @@
 import java.util.*;
 
+/**
+ * FCFS class extends Process and represents a process with First Come First Serve (FCFS) scheduling
+ * algorithm
+ */
 public class FCFS extends Process {
 
     public FCFS(int pid, int arrivalTime, int burstTime) {
@@ -22,7 +26,7 @@ public class FCFS extends Process {
 
         for (FCFS process : processes) {
             if (currentTime < process.getArrivalTime()) {
-                currentTime = process.getArrivalTime(); // If CPU is idle, move to process arrival time
+                currentTime = process.getArrivalTime(); // If CPU is ready, move to process arrival time
             }
 
             int completionTime = currentTime + process.getBurstTime();
@@ -43,7 +47,7 @@ public class FCFS extends Process {
             ganttChart.append(" P").append(process.getPid()).append(" |");
         }
 
-        // Print Gantt Chart and Averages
+        // Print Gantt Chart and Average times
         System.out.println(ganttChart);
         System.out.println("\nAverage Waiting Time: " + (double) totalWaitingTime / processes.size());
         System.out.println("Average Turnaround Time: " + (double) totalTurnaroundTime / processes.size());

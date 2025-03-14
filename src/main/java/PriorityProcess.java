@@ -1,5 +1,9 @@
 import java.util.*;
 
+/**
+ * PriorityProcess class extends Process and represents a process with priority
+ */
+
 class PriorityProcess extends Process {
     private int remainingTime;
 
@@ -28,6 +32,9 @@ class PriorityProcess extends Process {
         int currentTime = 0, completed = 0;
         int totalWaitingTime = 0, totalTurnaroundTime = 0;
 
+       // Priority Queue to store processes based on priority comparison.
+        // Higher priority runs first
+
         PriorityQueue<PriorityProcess> queue = new PriorityQueue<>(Comparator.comparingInt(PriorityProcess::getPriority));
         List<PriorityProcess> remainingProcesses = new ArrayList<>(processes);
 
@@ -41,12 +48,12 @@ class PriorityProcess extends Process {
                     queue.add(p);
                 }
             }
-
+             // if queue is empty, advance time and continue
             if (!queue.isEmpty()) {
                 PriorityProcess currentProcess = queue.poll();
                 currentProcess.setRemainingTime(currentProcess.getRemainingTime() - 1);
                 currentTime++;
-
+               // if process is finished, calculate times and print
                 if (currentProcess.getRemainingTime() == 0) {
                     completed++;
                     int completionTime = currentTime;
