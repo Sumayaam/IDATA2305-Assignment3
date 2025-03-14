@@ -1,17 +1,16 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class CPUScheduling {
-
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
 
-    // Input for Priority Scheduling
-    System.out.print("Enter number of processes: ");
+    System.out.print("Enter scheduling algorithm (1: FCFS, 2: Preemptive Priority): ");
+    int choice = scanner.nextInt();
+
+    System.out.print("Enter the number of processes: ");
     int n = scanner.nextInt();
 
-    List<PriorityProcess> priorityProcesses = new ArrayList<>();
+    List<Process> processes = new ArrayList<>();
 
     System.out.println("\nEnter process details one by one:");
 
@@ -27,14 +26,21 @@ public class CPUScheduling {
       System.out.print("Enter Burst Time: ");
       int burstTime = scanner.nextInt();
 
-      System.out.print("Enter Priority: ");
-      int priority = scanner.nextInt();
-
-      priorityProcesses.add(new PriorityProcess(pid, arrivalTime, burstTime, priority));
+      if (choice == 2) { // If Preemptive Priority Scheduling
+        System.out.print("Enter Priority: ");
+        int priority = scanner.nextInt();
+        processes.add(new PriorityProcess(pid, arrivalTime, burstTime, priority));
+      } else { // FCFS
+        processes.add(new FCFS(pid, arrivalTime, burstTime));
+      }
     }
 
-    // Run Preemptive Priority Scheduling
-    PriorityProcess.run(priorityProcesses);
+    // Execute chosen scheduling algorithm
+    if (choice == 2) {
+      PriorityProcess.run((List<PriorityProcess>) (List<?>) processes); // Type cast needed
+    } else {
+      FCFS.run((List<FCFS>) (List<?>) processes); // Type cast needed
+    }
 
     scanner.close();
   }

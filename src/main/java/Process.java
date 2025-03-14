@@ -39,7 +39,7 @@ public class Process {
     this.priority = priority;
   }
 
-  // Getters
+
   public int getPid() {
     return pid;
   }
@@ -60,41 +60,23 @@ public class Process {
     return completionTime;
   }
 
-  public int getTurnaroundTime() {
-    return turnaroundTime;
-  }
-
-  public int getWaitingTime() {
-    return waitingTime;
-  }
-
-  // Setters
   public void setCompletionTime(int completionTime) {
     this.completionTime = completionTime;
+  }
+
+  public int getTurnaroundTime() {
+    return turnaroundTime;
   }
 
   public void setTurnaroundTime(int turnaroundTime) {
     this.turnaroundTime = turnaroundTime;
   }
 
+  public int getWaitingTime() {
+    return waitingTime;
+  }
+
   public void setWaitingTime(int waitingTime) {
     this.waitingTime = waitingTime;
-  }
-
-  @Override
-  public String toString() {
-    return "Process{" +
-      "pid=" + pid +
-      ", arrivalTime=" + arrivalTime +
-      ", burstTime=" + burstTime +
-      ", priority=" + priority +
-      ", completionTime=" + completionTime +
-      ", turnaroundTime=" + turnaroundTime +
-      ", waitingTime=" + waitingTime +
-      '}';
-  }
-
-  protected void setBurstTime(int burstTime) {
-    this.burstTime = burstTime;
   }
 }

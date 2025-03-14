@@ -1,17 +1,11 @@
 import java.util.*;
 
 class PriorityProcess extends Process {
-    private int priority;
     private int remainingTime;
 
     public PriorityProcess(int pid, int arrivalTime, int burstTime, int priority) {
-        super(pid, arrivalTime, burstTime);
-        this.priority = priority;
+        super(pid, arrivalTime, burstTime, priority);
         this.remainingTime = burstTime;
-    }
-
-    public int getPriority() {
-        return priority;
     }
 
     public int getRemainingTime() {
@@ -21,6 +15,11 @@ class PriorityProcess extends Process {
     public void setRemainingTime(int time) {
         this.remainingTime = time;
     }
+
+    /**
+     * Preemptive Priority Scheduling Algorithm
+     * @param processes The list of processes
+     */
 
     public static void run(List<PriorityProcess> processes) {
         int n = processes.size();
